@@ -31,7 +31,20 @@ class Calculator extends Component {
 
   handleResultButton = () => {
     const display_text = this.state.displayId;
-    let result = eval(display_text.toString()).toString();
+    const modified_display_text = display_text.toString().toString();
+
+    let res, result;
+    try {
+      res = eval(modified_display_text);
+    } catch (e) {
+      if (e instanceof SyntaxError) {
+        alert(e.message);
+      }
+    }
+
+    if (res == null) result = "";
+    else result = res;
+
     this.setState({ displayId: result });
   };
 
