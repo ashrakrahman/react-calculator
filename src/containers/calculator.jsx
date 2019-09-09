@@ -1,57 +1,32 @@
 import React, { Component } from "react";
-import ButtonNumber from "./buttonNumber";
-import Display from "./display";
+import ButtonNumber from "../components/buttonNumber";
+import Display from "../components/display";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import {
+  setDisplayByResult,
+  setDisplayByClear,
+  setDisplayByClick
+} from "../actions";
 
 class Calculator extends Component {
-  state = {
-    btnList: [
-      { id: 1, name: "btn1", display: "1" },
-      { id: 2, name: "btn2", display: "2" },
-      { id: 3, name: "btn3", display: "3" },
-      { id: 4, name: "btn4", display: "+" },
-      { id: 5, name: "btn5", display: "4" },
-      { id: 6, name: "btn6", display: "5" },
-      { id: 7, name: "btn7", display: "6" },
-      { id: 8, name: "btn8", display: "-" },
-      { id: 9, name: "btn9", display: "7" },
-      { id: 10, name: "btn10", display: "8" },
-      { id: 11, name: "btn11", display: "9" },
-      { id: 12, name: "btn12", display: "*" }
-    ],
-    displayId: ""
-  };
-
   handleClickButton = displayInfo => {
-    this.setState({ displayId: this.state.displayId + displayInfo });
+    this.props.setDisplayByClick(displayInfo);
   };
 
   handleClearButton = () => {
-    this.setState({ displayId: "" });
+    this.props.setDisplayByClear();
   };
 
   handleResultButton = () => {
-    const display_text = this.state.displayId;
-    const modified_display_text = display_text.toString().toString();
-
-    let res, result;
-    try {
-      res = eval(modified_display_text);
-    } catch (e) {
-      if (e instanceof SyntaxError) {
-        alert(e.message);
-      }
-    }
-
-    if (res == null) result = "";
-    else result = res;
-
-    this.setState({ displayId: result });
+    this.props.setDisplayByResult();
   };
 
   render() {
     return (
       <div className="col-md-12">
-        <Display key="1" displayInfo={this.state.displayId}></Display>
+        <Display key="1" displayInfo={this.props.displayId}></Display>
         <div className="col-md-4">
           <div className="row">
             <div
@@ -82,10 +57,10 @@ class Calculator extends Component {
         </div>
         <div className="col-md-4">
           <div className="row">
-            {this.state.btnList.map(btn => (
+            {this.props.btnList.map(btn => (
               <div className="col-md-3" style={{ margin: 0, padding: 0 }}>
                 <ButtonNumber
-                  key={btn.id}
+                  key={btn}
                   name={btn.name}
                   display={btn.display}
                   onClickButton={this.handleClickButton}
@@ -99,4 +74,17 @@ class Calculator extends Component {
   }
 }
 
-export default Calculator;
+const mapStateToProps = state => ({
+  ...state
+});
+
+const mapDispatchToProps = {
+  setDisplayByResult,
+  setDisplayByClear,
+  setDisplayByClick
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Calculator);
