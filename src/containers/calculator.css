@@ -1,0 +1,13 @@
+.clearButton {
+  height: 50px;
+  background-color: pink;
+  text-align: center;
+  cursor: pointer;
+}
+
+.resultButton {
+  height: 50px;
+  background-color: orangered;
+  text-align: center;
+  cursor: pointer;
+}

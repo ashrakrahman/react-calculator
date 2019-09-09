@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ButtonNumber from "../components/buttonNumber";
 import Display from "../components/display";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import "./calculator.css";
 
 import {
   setDisplayByResult,
@@ -30,25 +30,13 @@ class Calculator extends Component {
         <div className="col-md-4">
           <div className="row">
             <div
-              className="col-md-9"
-              style={{
-                height: "50px",
-                backgroundColor: "pink",
-                textAlign: "center",
-                cursor: "pointer"
-              }}
+              className="col-md-9 clearButton"
               onClick={this.handleClearButton}
             >
               <h3 style={{ marginTop: 5 }}> Clear </h3>
             </div>
             <div
-              className="col-md-3"
-              style={{
-                height: "50px",
-                backgroundColor: "red",
-                textAlign: "center",
-                cursor: "pointer"
-              }}
+              className="col-md-3 resultButton"
               onClick={this.handleResultButton}
             >
               <h3 style={{ marginTop: 5 }}> = </h3>

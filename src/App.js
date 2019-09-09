@@ -4,7 +4,7 @@ import "./App.css";
 import Calculator from "./containers/calculator";
 
 function App() {
-  return <Calculator></Calculator>;
+  return <Calculator />;
 }
 
 export default App;
