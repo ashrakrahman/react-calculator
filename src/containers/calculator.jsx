@@ -3,6 +3,7 @@ import ButtonNumber from "../components/buttonNumber";
 import Display from "../components/display";
 import { connect } from "react-redux";
 import "./calculator.css";
+import { btnList } from "../constant";
 
 import {
   setDisplayByResult,
@@ -26,7 +27,10 @@ class Calculator extends Component {
   render() {
     return (
       <div className="col-md-12">
-        <Display key="1" displayInfo={this.props.displayId}></Display>
+        <Display
+          key="1"
+          displayInfo={this.props.calculator.displayId}
+        ></Display>
         <div className="col-md-4">
           <div className="row">
             <div
@@ -45,7 +49,7 @@ class Calculator extends Component {
         </div>
         <div className="col-md-4">
           <div className="row">
-            {this.props.btnList.map(btn => (
+            {btnList.map(btn => (
               <div className="col-md-3" style={{ margin: 0, padding: 0 }}>
                 <ButtonNumber
                   key={btn}

@@ -4,7 +4,9 @@ import {
   SET_DISPLAY_ON_CLICK_BUTTON
 } from "../actions";
 
-const calculator = (state, action) => {
+const initialDisplayState = { displayId: "" };
+
+const calculator = (state = initialDisplayState, action) => {
   switch (action.type) {
     case SET_DISPLAY_ON_RESULT_BUTTON:
       const display_text = state.displayId;
