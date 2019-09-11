@@ -8,7 +8,8 @@ import { btnList } from "../constant";
 import {
   setDisplayByResult,
   setDisplayByClear,
-  setDisplayByClick
+  setDisplayByClick,
+  setDisplayByHistory
 } from "../actions";
 
 class Calculator extends Component {
@@ -24,6 +25,10 @@ class Calculator extends Component {
     this.props.setDisplayByResult();
   };
 
+  handleHistoryButton = () => {
+    this.props.setDisplayByHistory();
+  };
+
   render() {
     return (
       <div className="col-md-12">
@@ -34,12 +39,21 @@ class Calculator extends Component {
         <div className="col-md-4">
           <div className="row">
             <div
-              className="col-md-9 clearButton"
+              key="b1"
+              className="col-md-3 clearButton"
               onClick={this.handleClearButton}
             >
-              <h3 style={{ marginTop: 5 }}> Clear </h3>
+              <h3 style={{ marginTop: 5 }}> CLR </h3>
             </div>
             <div
+              key="b2"
+              className="col-md-6 history"
+              onClick={this.handleHistoryButton}
+            >
+              <h3 style={{ marginTop: 5 }}> History </h3>
+            </div>
+            <div
+              key="b3"
               className="col-md-3 resultButton"
               onClick={this.handleResultButton}
             >
@@ -73,7 +87,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   setDisplayByResult,
   setDisplayByClear,
-  setDisplayByClick
+  setDisplayByClick,
+  setDisplayByHistory
 };
 
 export default connect(

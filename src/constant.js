@@ -1,5 +1,6 @@
 export const initialState = {
-  displayId: ""
+  displayId: "",
+  history: []
 };
 
 export const btnList = [
